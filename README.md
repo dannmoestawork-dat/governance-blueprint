@@ -14,7 +14,7 @@ Everything here is meant to be read offline and kept. To take the whole thing wi
 **Code** button at the top of this page and choose **Download ZIP**, or clone it:
 
 ```bash
-git clone https://github.com/dannmoestawork-dat/governance_blueprint.git
+git clone https://github.com/dannmoestawork-dat/governance-blueprint.git
 ```
 
 No account, no email, no sign-up.
