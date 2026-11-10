@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
+config.toml
+data/
+navigator.bundle
+.pytest_cache/

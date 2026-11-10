@@ -1,0 +1,2 @@
+# In-State Governor has no third-party runtime dependencies.
+# It is pure Python standard library (tomllib requires Python 3.11+).

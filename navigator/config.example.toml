@@ -1,0 +1,47 @@
+# Navigator configuration.
+# Copy to config.toml beside this file (or pass --config PATH).
+# Everything has a sane default; only [index].roots is genuinely required.
+
+[index]
+# Directories to index. First entry is the "primary" tree.
+roots = ["/path/to/your/project"]
+# Directory names pruned anywhere in the walk.
+exclude_dirs = [
+    ".git", ".venv", "venv", "__pycache__", "node_modules",
+    ".obsidian", "dist", "build", ".pytest_cache", "_archive",
+]
+# Glob patterns (matched against the relative path) to skip.
+exclude_globs = ["*.pyc", "*.zip", "*.img"]
+# Extensions treated as text and full-text indexed (others: metadata only).
+text_exts = [
+    ".py", ".md", ".txt", ".toml", ".json", ".yaml", ".yml", ".csv",
+    ".sh", ".ps1", ".bat", ".html", ".css", ".js", ".sql", ".ini", ".cfg",
+]
+# Per-file cap on extracted text (bytes). Larger text files are truncated.
+max_text_bytes = 400000
+
+[data]
+# Where the SQLite database and wiki live. Relative paths resolve against
+# the directory containing the config file.
+dir = "data"
+
+[llm]
+# backend: "ollama" | "openai" | "stub"
+# "stub" is deterministic and offline — used by the proof suite, and a safe
+# default so a fresh clone works with no model at all.
+backend = "stub"
+url = "http://localhost:11434"          # ollama default; for openai-compatible use the base url
+model = "llama3"
+timeout_seconds = 120
+# For openai backend, the API key is read from env var NAVIGATOR_LLM_API_KEY.
+
+[analyzers]
+# Docs a directory of scripts is expected to carry (missing_docs analyzer).
+required_docs = ["MAINTENANCE_LOG.md"]
+# doc_drift: flag when newest script is this many days newer than its docs.
+drift_days = 30
+
+[web]
+# Optional. When set, `navigator fetch` can search via a SearXNG instance.
+searx_url = ""
+cache_dir = "data/webcache"

@@ -1,0 +1,45 @@
+# In-State Governor — example rule config (generic)
+#
+# Each [[rule]] table enables one rule. 'id' selects the rule; every other key
+# is passed to that rule as a parameter. A rule may appear multiple times with
+# different globs. Copy this to governor.toml and adapt to your project.
+
+# 1. Every markdown file must carry a classification header line.
+[[rule]]
+id = "required_header"
+glob = "**/*.md"
+pattern = "^## Classification:"
+severity = "error"
+
+# 2. Every markdown file must carry at least one provenance tag.
+[[rule]]
+id = "required_tag"
+glob = "**/*.md"
+tags = ["\\[AI-GENERATED\\]", "\\[AI-ASSISTED\\]", "\\[VERIFIED\\]"]
+severity = "warning"
+
+# 3. The top-level index file must stay under 200 lines.
+[[rule]]
+id = "size_limit"
+glob = "INDEX.md"
+max_lines = 200
+severity = "warning"
+
+# 4. Wiki links [[name]] must resolve to a scanned .md file.
+[[rule]]
+id = "dead_wiki_links"
+glob = "**/*.md"
+severity = "warning"
+
+# 5. Relative path references in markdown must resolve on disk.
+[[rule]]
+id = "dead_path_refs"
+glob = "**/*.md"
+severity = "error"
+
+# 6. Documents in docs/ must have frontmatter with these keys.
+[[rule]]
+id = "frontmatter_shape"
+glob = "docs/**/*.md"
+required_keys = ["title", "status"]
+severity = "error"
